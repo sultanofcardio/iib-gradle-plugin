@@ -1,0 +1,6 @@
+.idea/
+**/.gradle/
+samples/
+**/build/
+**/out/
+gradle.properties
