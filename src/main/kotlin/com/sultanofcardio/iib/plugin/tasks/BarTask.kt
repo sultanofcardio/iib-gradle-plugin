@@ -3,9 +3,6 @@ package com.sultanofcardio.iib.plugin.tasks
 import com.sultanofcardio.iib.plugin.barFiles
 import com.sultanofcardio.iib.plugin.models.BarFile
 import org.gradle.api.DefaultTask
-import org.gradle.api.Project
-import org.gradle.api.file.ConfigurableFileCollection
-import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.OutputFiles
 import org.gradle.api.tasks.TaskAction
@@ -41,7 +38,7 @@ open class BarTask : DefaultTask() {
                         compileTaskPresent = true
                         compileClasspath.addAll(it.classpath.files)
                     }
-                    it is Jar -> {
+                    it is Jar && it.name == "jar" -> {
                         jarTaskPresent = true
                         jar = it.outputs.files.first()
                     }
