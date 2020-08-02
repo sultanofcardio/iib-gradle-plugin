@@ -91,14 +91,12 @@ publishing {
 
 repositories {
     mavenCentral()
-    mavenLocal()
+    maven("https://repo.sultanofcardio.com/artifactory/sultanofcardio")
 }
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     api("com.sultanofcardio:iib-java-toolkit:1.0.0-SNAPSHOT")
-
-    testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
 }
 
 tasks {
