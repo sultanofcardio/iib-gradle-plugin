@@ -15,27 +15,30 @@ gradlePlugin {
     }
 }
 
-val sultanofcardioUser: String by project
-val sultanofcardioPassword: String by project
-val sultanofcardioUrl: String by project
-
 publishing {
-    repositories {
-        maven {
-            name = "sultanofcardio"
-            credentials {
-                username = sultanofcardioUser
-                password = sultanofcardioPassword
+
+    if(
+        "sultanofcardioUser" in project.properties &&
+        "sultanofcardioPassword" in project.properties &&
+        "sultanofcardioUrl" in project.properties
+    ) {
+        val sultanofcardioUser: String by project
+        val sultanofcardioPassword: String by project
+        val sultanofcardioUrl: String by project
+
+        repositories {
+            maven {
+                name = "sultanofcardio"
+                credentials {
+                    username = sultanofcardioUser
+                    password = sultanofcardioPassword
+                }
+                url = uri(sultanofcardioUrl)
             }
-            url = uri(sultanofcardioUrl)
         }
     }
 
     publications {
-
-        forEach {
-            println("${it.name}: ${it::class.qualifiedName}")
-        }
 
         create<MavenPublication>("pluginMavenSnapshot") {
             artifactId = project.name
@@ -55,32 +58,32 @@ publishing {
             }
         }
     }
-}
 
-afterEvaluate {
-    publishing.publications {
-        getByName<MavenPublication>("pluginMavenSnapshot") pms@ {
-            groupId = getByName<MavenPublication>("pluginMaven").groupId
-            artifactId = getByName<MavenPublication>("pluginMaven").artifactId
+    afterEvaluate {
+        publishing.publications {
+            getByName<MavenPublication>("pluginMavenSnapshot") pms@ {
+                groupId = getByName<MavenPublication>("pluginMaven").groupId
+                artifactId = getByName<MavenPublication>("pluginMaven").artifactId
+            }
+
+            getByName<MavenPublication>("${project.name}PluginMarkerMavenSnapshot") pnpmms@ {
+                groupId = getByName<MavenPublication>("${project.name}PluginMarkerMaven").groupId
+                artifactId = getByName<MavenPublication>("${project.name}PluginMarkerMaven").artifactId
+            }
         }
 
-        getByName<MavenPublication>("${project.name}PluginMarkerMavenSnapshot") pnpmms@ {
-            groupId = getByName<MavenPublication>("${project.name}PluginMarkerMaven").groupId
-            artifactId = getByName<MavenPublication>("${project.name}PluginMarkerMaven").artifactId
-        }
-    }
-
-    publishing.publications.forEach {
-        when(it) {
-            is MavenPublication -> {
-                println("Name: ${it.name}")
-                println("Class name: ${it::class.qualifiedName}")
-                println("Group ID: ${it.groupId}")
-                println("Version: ${it.version}")
-                println("Artifact ID: ${it.artifactId}")
-                println("Artifacts: ${it.artifacts}")
-                println("POM: ${it.pom.url.getOrElse("")}")
-                println("=======")
+        publishing.publications.forEach {
+            when(it) {
+                is MavenPublication -> {
+                    println("Name: ${it.name}")
+                    println("Class name: ${it::class.qualifiedName}")
+                    println("Group ID: ${it.groupId}")
+                    println("Version: ${it.version}")
+                    println("Artifact ID: ${it.artifactId}")
+                    println("Artifacts: ${it.artifacts}")
+                    println("POM: ${it.pom.url.getOrElse("")}")
+                    println("=======")
+                }
             }
         }
     }
