@@ -42,5 +42,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.sultanofcardio:iib-java-toolkit:1.0.0-SNAPSHOT")
+    bar("com.sultanofcardio:iib-java-toolkit:1.0.0-SNAPSHOT")
+    compileOnly(fileTree("lib-10.0.0.21") { this.include("*.jar") })
+    testImplementation("junit:junit:4.13.1")
 }
