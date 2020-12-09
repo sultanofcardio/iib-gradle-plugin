@@ -32,11 +32,12 @@ open class BarTask : DefaultTask() {
             var compileTaskPresent = false
             var jarTaskPresent = false
 
+            compileClasspath.addAll(project.configurations.getByName("bar").toList())
+
             project.tasks.forEach {
                 when {
                     it is JavaCompile && it.name == "compileJava" -> {
                         compileTaskPresent = true
-                        compileClasspath.addAll(it.classpath.files)
                     }
                     it is Jar && it.name == "jar" -> {
                         jarTaskPresent = true
@@ -44,8 +45,6 @@ open class BarTask : DefaultTask() {
                     }
                     it.name == "compileKotlin" -> {
                         compileTaskPresent = true
-                        println(it.name)
-                        println(it::class.qualifiedName)
                     }
                 }
             }

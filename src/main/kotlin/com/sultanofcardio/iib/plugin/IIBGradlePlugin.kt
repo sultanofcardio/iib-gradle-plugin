@@ -8,6 +8,9 @@ import org.gradle.api.Project
 open class IIBGradlePlugin : Plugin<Project> {
     override fun apply(project: Project) {
         project.tasks.create("bar", BarTask::class.java)
+
+        val bar = project.configurations.create("bar")
+        project.configurations.getByName("implementation").extendsFrom(bar)
     }
 }
 
