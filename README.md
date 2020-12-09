@@ -32,7 +32,7 @@ to this:
 It is recommended to write your gradle build file in Kotlin DSL. You can write your application code in any JVM language 
 that produces Java 8 compatible bytecode. 
 
-Here's the `com.sample.App` JavaCompute node referenced above:
+Here's the `com.sample.JSONApp` JavaCompute node referenced above:
 
 ```java
 public class App extends JSONProcessor {

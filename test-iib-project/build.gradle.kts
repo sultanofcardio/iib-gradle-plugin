@@ -24,10 +24,9 @@ configurations.all {
 
 bar(name) {
     createMessageFlow("sample_message_flow") {
-        processingNode("com.sample.App") {
+        processingNode("com.sample.JSONApp") {
             input = MQInputNode("MQ_INPUT", "INPUT_QUEUE").apply {
                 browse = true
-                messageDomainProperty = MessageDomainProperty.JSON
             }
 
             out = MQOutputNode("MQ_OUTPUT", "OUTPUT_QUEUE")
@@ -43,7 +42,7 @@ repositories {
 }
 
 dependencies {
-    bar("com.sultanofcardio:iib-java-toolkit:1.0.1-SNAPSHOT")
+    bar("com.sultanofcardio:iib-java-toolkit:1.1.0-SNAPSHOT")
     bar("org.apache.logging.log4j:log4j-api:2.12.1")
     bar("org.apache.logging.log4j:log4j-core:2.12.1")
     compileOnly(fileTree("lib-10.0.0.21") { this.include("*.jar") })
