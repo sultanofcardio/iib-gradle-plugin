@@ -4,3 +4,4 @@ samples/
 **/build/
 **/out/
 gradle.properties
+lib-10.0.0.21
