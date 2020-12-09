@@ -7,9 +7,13 @@ import com.sultanofcardio.iib.errors.ProcessingError;
 import com.sultanofcardio.iib.models.JSONArrayMessage;
 import com.sultanofcardio.iib.models.JSONObjectMessage;
 import com.sultanofcardio.iib.nodes.processing.JSONProcessor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
 public class App extends JSONProcessor {
+
+    Logger logger = LogManager.getLogger();
 
 
     public App() {
@@ -18,11 +22,13 @@ public class App extends JSONProcessor {
 
     @Override
     protected void processArray(@NotNull JSONArrayMessage jsonArrayMessage) throws ProcessingError {
-
+        logger.info("Received JSON message:");
+        logger.info(jsonArrayMessage.getJson().toString(4));
     }
 
     @Override
     protected void processObject(@NotNull JSONObjectMessage jsonObjectMessage) throws ProcessingError {
-
+        logger.info("Received JSON message:");
+        logger.info(jsonObjectMessage.getJson().toString(4));
     }
 }

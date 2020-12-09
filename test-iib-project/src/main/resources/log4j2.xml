@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<Configuration>
+    <Appenders>
+        <RollingFile name="rolling" fileName="/tmp/test-iib-project/logs/test_iib_project.out"
+                     filePattern="/tmp/test-iib-project/logs/test_iib_project.log.%d{yyyy-MM-dd}">
+            <PatternLayout pattern="%-5level %d{yyyy-MM-dd hh:mm:ss.SSS a} [%t] %c - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+        <Console name="stdout">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd hh:mm:ss.SSS a} [%t] %c - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="TRACE">
+            <AppenderRef ref="stdout"/>
+        </Root>
+        <Logger name="com.sample" level="TRACE" additivity="true">
+            <AppenderRef ref="rolling"/>
+        </Logger>
+    </Loggers>
+</Configuration>

@@ -43,6 +43,8 @@ repositories {
 
 dependencies {
     bar("com.sultanofcardio:iib-java-toolkit:1.0.0-SNAPSHOT")
+    bar("org.apache.logging.log4j:log4j-api:2.12.1")
+    bar("org.apache.logging.log4j:log4j-core:2.12.1")
     compileOnly(fileTree("lib-10.0.0.21") { this.include("*.jar") })
     testImplementation("junit:junit:4.13.1")
 }
