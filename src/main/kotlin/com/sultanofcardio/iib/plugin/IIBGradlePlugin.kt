@@ -17,6 +17,7 @@ open class IIBGradlePlugin : Plugin<Project> {
 internal val Project.barFiles: MutableMap<String, BarFile> by lazy { mutableMapOf<String, BarFile>() }
 
 fun Project.bar(name: String, receiver: BarFile.() -> Unit) {
+    require(name.isNotEmpty())
     when(val bar = barFiles[name]) {
         null -> {
             BarFile(name, this).apply {
