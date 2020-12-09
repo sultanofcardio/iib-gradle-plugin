@@ -81,7 +81,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    api("com.sultanofcardio:iib-java-toolkit:1.0.0-SNAPSHOT")
+    api("com.sultanofcardio:iib-java-toolkit:1.0.1-SNAPSHOT")
 }
 
 tasks {
