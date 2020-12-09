@@ -7,8 +7,10 @@ import com.sultanofcardio.iib.errors.ProcessingError;
 import com.sultanofcardio.iib.models.JSONArrayMessage;
 import com.sultanofcardio.iib.models.JSONObjectMessage;
 import com.sultanofcardio.iib.nodes.processing.JSONProcessor;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.jetbrains.annotations.NotNull;
 
 public class App extends JSONProcessor {
@@ -18,6 +20,7 @@ public class App extends JSONProcessor {
 
     public App() {
         super("App");
+        Configurator.setLevel(logger.getName(), Level.TRACE);
     }
 
     @Override
