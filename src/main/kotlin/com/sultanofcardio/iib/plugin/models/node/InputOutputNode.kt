@@ -34,6 +34,7 @@ class MQInputNode(name: String, val queueName: String) : InputNode(name) {
 
     var browse = false
 
+    var messageDomainProperty: MessageDomainProperty = MessageDomainProperty.BLOB
     var sslCipherSpec = ""
     var sslPeerName = ""
     var channelName = ""
@@ -109,7 +110,7 @@ class MQInputNode(name: String, val queueName: String) : InputNode(name) {
     override fun toXml(compositeNumber: Int): String {
         return """
              <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_$compositeNumber" location="68,216"
-                   queueName="$queueName" browse="$browse">
+                   queueName="$queueName" messageDomainProperty="$messageDomainProperty" browse="$browse">
                 <translation xmi:type="utility:ConstantString" string="$name"/>
             </nodes>
         """.trimIndent()
@@ -129,6 +130,10 @@ enum class MQConnection(val value: String) {
     CCDT("Client channel definition table (CCDT) file");
 
     override fun toString(): String = value
+}
+
+enum class MessageDomainProperty(val value: String) {
+    BLOB("BLOB"), TEXT("BLOB"), JSON("JSON"), XMLNSC("XMLNSC");
 }
 
 sealed class OutputNode(name: String) : Node(name)

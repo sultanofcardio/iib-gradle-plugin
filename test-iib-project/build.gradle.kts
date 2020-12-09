@@ -27,6 +27,7 @@ bar(name) {
         processingNode("com.sample.App") {
             input = MQInputNode("MQ_INPUT", "INPUT_QUEUE").apply {
                 browse = true
+                messageDomainProperty = MessageDomainProperty.JSON
             }
 
             out = MQOutputNode("MQ_OUTPUT", "OUTPUT_QUEUE")
