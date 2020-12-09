@@ -3,6 +3,10 @@ import com.sultanofcardio.iib.plugin.models.node.*
 import java.util.concurrent.TimeUnit
 
 buildscript {
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
+    }
+
     repositories {
         mavenCentral()
         maven("https://repo.sultanofcardio.com/artifactory/sultanofcardio")
