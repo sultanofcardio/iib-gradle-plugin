@@ -46,4 +46,9 @@ public class JSONApp extends JSONProcessor {
         logger.trace(jsonObjectMessage.getJson().toString(4));
         logger.error(jsonObjectMessage.getJson().toString(4));
     }
+
+    @Override
+    protected void handleError(@NotNull ProcessingError e) {
+        logger.error("", e);
+    }
 }
