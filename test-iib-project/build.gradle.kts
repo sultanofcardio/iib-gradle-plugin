@@ -1,4 +1,4 @@
-import com.sultanofcardio.iib.plugin.bar
+import com.sultanofcardio.iib.plugin.iib
 import com.sultanofcardio.iib.plugin.models.node.*
 import java.util.concurrent.TimeUnit
 
@@ -11,6 +11,11 @@ buildscript {
         mavenCentral()
         maven("https://repo.sultanofcardio.com/artifactory/sultanofcardio")
     }
+
+    dependencies {
+        classpath(fileTree("lib-10.0.0.21") { this.include("*.jar") })
+        classpath("org.eclipse.jetty:jetty-util:9.4.35.v20201120")
+    }
 }
 
 plugins {
@@ -22,17 +27,26 @@ configurations.all {
     resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
 }
 
-bar(name) {
-    createMessageFlow("sample_message_flow") {
-        processingNode("com.sample.JSONApp") {
-            input = MQInputNode("MQ_INPUT", "INPUT_QUEUE").apply {
-                browse = true
+iib {
+    bar(name) {
+        createMessageFlow("sample_message_flow") {
+
+            additionalInstances = 17
+
+            processingNode("com.sample.JSONApp") {
+                input = MQInputNode("MQ_INPUT", "INPUT_QUEUE").apply {
+                    browse = true
+                }
+
+                out = MQOutputNode("MQ_OUTPUT", "OUTPUT_QUEUE")
+
+                failure = MQOutputNode("MQ_FAILURE", "FAILURE_QUEUE")
             }
-
-            out = MQOutputNode("MQ_OUTPUT", "OUTPUT_QUEUE")
-
-            failure = MQOutputNode("MQ_FAILURE", "FAILURE_QUEUE")
         }
+    }
+
+    integrationNode("local", "172.17.0.4") {
+        server = "default"
     }
 }
 
