@@ -24,13 +24,8 @@ public class TextApp extends TextProcessor {
 
     @Override
     protected void processText(@NotNull TextMessage textMessage) throws ProcessingError {
-        final String output = "Received TEXT message";
-        System.out.println(output);
-        logger.trace(output);
-        logger.error(output);
-        System.out.println(textMessage.getText());
+        logger.trace("Received TEXT message");
         logger.trace(textMessage.getText());
-        logger.error(textMessage.getText());
     }
 
     @Override

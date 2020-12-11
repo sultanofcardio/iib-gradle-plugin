@@ -25,26 +25,14 @@ public class JSONApp extends JSONProcessor {
 
     @Override
     protected void processArray(@NotNull JSONArrayMessage jsonArrayMessage) throws ProcessingError {
-        logger.info("Received JSON message:");
-        logger.info(jsonArrayMessage.getJson().toString(4));
-        System.out.println("Received JSON message");
         logger.trace("Received JSON message");
-        logger.error("Received JSON message");
-        System.out.println(jsonArrayMessage.getJson().toString(4));
         logger.trace(jsonArrayMessage.getJson().toString(4));
-        logger.error(jsonArrayMessage.getJson().toString(4));
     }
 
     @Override
     protected void processObject(@NotNull JSONObjectMessage jsonObjectMessage) throws ProcessingError {
-        logger.info("Received JSON message:");
-        logger.info(jsonObjectMessage.getJson().toString(4));
-        System.out.println("Received JSON message");
         logger.trace("Received JSON message");
-        logger.error("Received JSON message");
-        System.out.println(jsonObjectMessage.getJson().toString(4));
         logger.trace(jsonObjectMessage.getJson().toString(4));
-        logger.error(jsonObjectMessage.getJson().toString(4));
     }
 
     @Override
