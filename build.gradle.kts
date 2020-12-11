@@ -82,7 +82,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     api("com.sultanofcardio:iib-java-toolkit:1.1.0-SNAPSHOT")
-    testImplementation(fileTree("lib-10.0.0.21") { this.include("*.jar") })
+    implementation(fileTree("lib-10.0.0.21") { this.include("*.jar") })
     testImplementation("org.eclipse.jetty:jetty-util:9.4.35.v20201120")
     testImplementation("junit:junit:4.13.1")
 }

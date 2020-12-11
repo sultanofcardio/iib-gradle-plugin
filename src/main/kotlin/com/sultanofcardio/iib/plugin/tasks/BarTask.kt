@@ -1,6 +1,6 @@
 package com.sultanofcardio.iib.plugin.tasks
 
-import com.sultanofcardio.iib.plugin.barFiles
+import com.sultanofcardio.iib.plugin.iibProjectExtension
 import com.sultanofcardio.iib.plugin.models.BarFile
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.InputFiles
@@ -15,7 +15,7 @@ import java.util.zip.ZipOutputStream
 open class BarTask : DefaultTask() {
 
     @OutputFiles
-    private val barFiles: MutableMap<String, BarFile> = project.barFiles
+    private val barFiles: MutableMap<String, BarFile> = iibProjectExtension.barFiles
 
     @InputFiles
     private var compileClasspath: MutableSet<File> = mutableSetOf()
