@@ -29,13 +29,8 @@ public class BlobApp extends BlobProcessor {
     @Override
     protected void processBlob(@NotNull BlobMessage blobMessage) throws ProcessingError {
         final String text = new String(blobMessage.getBlob(), StandardCharsets.UTF_8);
-        final String output = "Received TEXT message";
-        System.out.println(output);
-        logger.trace(output);
-        logger.error(output);
-        System.out.println(text);
+        logger.trace("Received BLOB message");
         logger.trace(text);
-        logger.error(text);
     }
 
     @Override
